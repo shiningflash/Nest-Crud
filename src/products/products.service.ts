@@ -14,7 +14,6 @@ export class ProductsService {
         const newProduct = new this.productModel({
             title, description, price
         });
-        console.log(title, description, price);
         const product = await newProduct.save();
         return this.formatProduct(product);
     }
@@ -65,7 +64,7 @@ export class ProductsService {
         let product;
         try {
             product = await this.productModel.findById(id);
-        } catch (eroor) {
+        } catch (error) {
             throw new NotFoundException('Could not find product!');
         }
         if (!product) {

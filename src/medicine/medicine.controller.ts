@@ -16,41 +16,43 @@ export class MedicineController {
     constructor(private readonly medicineService: MedicineService) {};
 
     @Post()
-    addMedicine(
+    async addMedicine(
         @Body('name') name: string,
         @Body('brand') brand: string,
         @Body('price') price: number
     ) {
-        const medicine = this.medicineService.insertMedicine(name, brand, price);
+        const medicine = await this.medicineService.insertMedicine(name, brand, price);
         return medicine;
     }
 
     @Get()
-    getAllMedicine(
+    async getAllMedicine(
         @Query('brand') brand: string
     ) {
-        return this.medicineService.getAllMedicine(brand);
+        const medicines = await this.medicineService.getAllMedicine(brand);
+        return medicines;
     }
 
     @Get(':id')
-    getMedicine(@Param('id') id: string) {
-        return this.medicineService.getSingleMedicine(id);
+    async getMedicine(@Param('id') id: string) {
+        const medicine = await this.medicineService.getSingleMedicine(id);
+        return medicine;
     }
 
     @Patch(':id')
-    updateMedicine(
+    async updateMedicine(
         @Param('id') id: string,
         @Body('name') name: string,
         @Body('brand') brand: string,
         @Body('price') price: number
     ) {
-        this.medicineService.updateMedicine(id, name, brand, price);
+        await this.medicineService.updateMedicine(id, name, brand, price);
         return { success: true, message: 'Updated successfully' };
     }
 
     @Delete(':id')
-    removeMedicine(@Param('id') id: string) {
-        this.medicineService.deleteMedicine(id);
+    async removeMedicine(@Param('id') id: string) {
+        await this.medicineService.deleteMedicine(id);
         return { success: true, message: "Deleted successfully" };
     }
 }
