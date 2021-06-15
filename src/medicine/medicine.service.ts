@@ -6,7 +6,6 @@ import { Medicine } from './medicine.model';
 
 @Injectable()
 export class MedicineService {
-    private medicines: Medicine[] = [];
     constructor(
         @InjectModel('Medicine') private readonly medicineModel: Model<Medicine>,
     ) {}

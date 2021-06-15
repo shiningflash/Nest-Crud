@@ -5,11 +5,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { MedicineModule } from './medicine/medicine.module';
+import { UserModule } from './user/user.module';
 
 @Module({
     imports: [
         ProductsModule,
         MedicineModule,
+        UserModule,
         MongooseModule.forRoot(
             'mongodb+srv://mydb:mypass@cluster0.4hxv3.mongodb.net/demo-db?retryWrites=true&w=majority'
         ),
